@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - TypeBlitz</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="advanced-styles.css">
+    <style>
+        body {
+            background: radial-gradient(circle at 0% 0%, #0f172a 0%, #020617 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+
+        .help-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #38bdf8;
+            font-weight: 800;
+        }
+
+        .help-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .help-card:hover {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .help-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .help-icon {
+            width: 32px;
+            height: 32px;
+            background: #38bdf8;
+            color: #020617;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        .help-content {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+            color: #64748b;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="help-container">
+        <h1>❓ Assistance Hub</h1>
+
+        <div class="help-card">
+            <div class="help-title">
+                <span class="help-icon">!</span>
+                How do I earn coins?
+            </div>
+            <div class="help-content">
+                Practice for 60 cumulative minutes to earn 1 Store Coin. You can track your session progress on the main
+                dashboard.
+            </div>
+        </div>
+
+        <div class="help-card">
+            <div class="help-title">
+                <span class="help-icon">!</span>
+                Where can I use my discounts?
+            </div>
+            <div class="help-content">
+                Discounts can be redeemed currently at Daraz and ShopY. Copy your unique code and apply it during
+                checkout on their respective platforms.
+            </div>
+        </div>
+
+        <div class="help-card">
+            <div class="help-title">
+                <span class="help-icon">!</span>
+                Is my progress saved?
+            </div>
+            <div class="help-content">
+                Yes, your progress is automatically saved to your browser's local storage. Clearing your browser data
+                will reset your stats.
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">← Return to TypeBlitz Main</a>
+    </div>
+</body>
+
+</html>
