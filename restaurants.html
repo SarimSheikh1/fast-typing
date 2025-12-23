@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants - TypeBlitz</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="advanced-styles.css">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background: #0f172a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .res-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .res-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(251, 191, 36, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .res-image {
+            height: 180px;
+            background: linear-gradient(45deg, #1e293b, #334155);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .res-info {
+            padding: 25px;
+        }
+
+        .res-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .res-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            color: #fbbf24;
+        }
+
+        .discount-badge {
+            background: #f59e0b;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .res-desc {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .claim-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .claim-btn:hover {
+            background: #f59e0b;
+            color: #000;
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        .back-btn {
+            display: inline-block;
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #fff;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-section">
+        <h1>🍴 My Restaurants</h1>
+        <p>Premium dining rewards for elite typists.</p>
+    </div>
+
+    <div class="restaurant-grid">
+        <div class="res-card">
+            <div class="res-image">🍔</div>
+            <div class="res-info">
+                <div class="res-name">The Burger Foundry</div>
+                <div class="res-meta">
+                    <span class="stars">★★★★★</span>
+                    <span class="discount-badge">25% OFF</span>
+                </div>
+                <p class="res-desc">Artisanal burgers grilled to perfection with secret foundry sauce. Signature typing
+                    fuel.</p>
+                <button class="claim-btn">Visit Menu</button>
+            </div>
+        </div>
+
+        <div class="res-card">
+            <div class="res-image">🍕</div>
+            <div class="res-info">
+                <div class="res-name">Velocity Pizza</div>
+                <div class="res-meta">
+                    <span class="stars">★★★★☆</span>
+                    <span class="discount-badge">20% OFF</span>
+                </div>
+                <p class="res-desc">Wood-fired pizzas delivered as fast as your typing speed. Crisp, fresh, and
+                    rewarding.</p>
+                <button class="claim-btn">Order Now</button>
+            </div>
+        </div>
+
+        <div class="res-card">
+            <div class="res-image">🍣</div>
+            <div class="res-info">
+                <div class="res-name">Zen Sushi Bar</div>
+                <div class="res-meta">
+                    <span class="stars">★★★★★</span>
+                    <span class="discount-badge">15% OFF</span>
+                </div>
+                <p class="res-desc">Precision-crafted sushi for precise typists. Focus your mind and feed your soul.</p>
+                <button class="claim-btn">Book Table</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="index.html" class="back-btn">← Back to Dashboard</a>
+    </div>
+</body>
+
+</html>
