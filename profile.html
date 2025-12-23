@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - TypeBlitz</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="advanced-styles.css">
+    <style>
+        body {
+            background: #020617;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .profile-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            padding: 50px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .user-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .rank-tag {
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #6366f1;
+            display: block;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .skill-section {
+            margin-bottom: 40px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #6366f1, #a855f7);
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.1, 0.9, 0.2, 1);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #64748b;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #fff;
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="avatar">👤</div>
+            <div class="user-info">
+                <h1>TypeBlitz Master</h1>
+                <span class="rank-tag" id="levelTag">Level 1 Novice</span>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-value" id="profileTime">0h 0m</span>
+                <span class="stat-label">Total Practice</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="profileWpm">0</span>
+                <span class="stat-label">Avg WPM</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="profileAccuracy">100%</span>
+                <span class="stat-label">Accuracy</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="profileCoins">0</span>
+                <span class="stat-label">Coins Earned</span>
+            </div>
+        </div>
+
+        <div class="skill-section">
+            <div class="skill-header">
+                <span>Skill Mastery</span>
+                <span id="skillPercent">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="masteryFill"></div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">← Back to Dashboard</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('typeblitz_state');
+            if (saved) {
+                const state = JSON.parse(saved);
+                const user = state.user;
+
+                // Time
+                const hours = Math.floor(user.totalMinutes / 60);
+                const mins = Math.floor(user.totalMinutes % 60);
+                document.getElementById('profileTime').textContent = `${hours}h ${mins}m`;
+
+                // WPM & Stats
+                document.getElementById('profileWpm').textContent = Math.round(user.averageWpm || 0);
+                document.getElementById('profileAccuracy').textContent = Math.round(user.averageAccuracy || 100) + '%';
+                document.getElementById('profileCoins').textContent = user.coins || 0;
+
+                // Level & Progress
+                const level = user.level || 1;
+                document.getElementById('levelTag').textContent = `Level ${level} Elite`;
+
+                const progress = Math.min((user.totalMinutes / (level * 60)) * 100, 100);
+                setTimeout(() => {
+                    document.getElementById('masteryFill').style.width = progress + '%';
+                    document.getElementById('skillPercent').textContent = Math.round(progress) + '%';
+                }, 300);
+            }
+        });
+    </script>
+</body>
+
+</html>
